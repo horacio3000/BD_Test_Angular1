@@ -1,0 +1,189 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+html {
+    font-size: 14px;
+}
+
+body {
+    text-align: center;
+    font-family: Arial;
+    font-size: 13pt;
+    padding: 20px;
+    padding-top: 40px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.container {
+    max-width: 960px;
+}
+
+.pricing-header {
+    max-width: 700px;
+}
+
+.card-deck .card {
+    min-width: 220px;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+
+.mTable01 {
+    border-bottom: solid 1px silver;
+    border-left: solid 1px silver;
+    display: table;
+}
+
+.mTable01>div {
+    display: table-row;
+}
+
+.mTable01>div>div {
+    display: table-cell;
+    padding: 5px;
+    border-top: solid 1px silver;
+    border-right: solid 1px silver;
+}
+
+.mTable02 {
+    display: table;
+}
+
+.mTable02>div {
+    display: table-row;
+}
+
+.mTable02>div>div {
+    display: table-cell;
+    padding: 5px;
+}
+
+.mTableMiddleA {
+    display: table;
+}
+
+.mTableMiddleA>div {
+    display: table-row;
+    vertical-align: middle;
+}
+
+.mTableMiddleA>div>div {
+    display: table-cell;
+    padding: 5px;
+}
+
+.mTableMiddle {
+    display: table-cell;
+    padding: 5px;
+    border-top: solid 1px silver;
+    border-right: solid 1px silver;
+}
+
+.mTableMiddle>div {
+    display: table-row;
+}
+
+.mTableMiddle>div>div {
+    display: table-cell;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.GridSagolWhite {
+    margin: 0px auto;
+    padding: 4px;
+    border: solid 1px silver;
+    border-radius: 4px;
+}
+
+.GridSagolWhite>div {
+    width: 100%;
+    display: table;
+    background-color: White;
+    border-right: solid 1px silver;
+    direction: ltr;
+    border-bottom: solid 1px rgb(230, 230, 230);
+}
+
+.GridSagolWhite>div>div {
+    display: table-row;
+    width: 100%;
+}
+
+.GridSagolWhite>div>div:nth-child(2n + 1) {
+    background-color: #d7d7ec
+}
+
+.GridSagolWhite>div>div>div {
+    font-weight: bold;
+    text-align: right;
+    border-bottom: solid 1px silver;
+    display: table-cell;
+    border-left: solid 1px silver;
+    height: 40px;
+    vertical-align: middle;
+    color: navy;
+    padding: 5px;
+}
+
+.GridSagolWhite>div>div:nth-child(1) {
+    background-color: #9292c1;
+    color: white;
+    height: 50px;
+    vertical-align: middle;
+    font-weight: bold;
+    color: white;
+    font-size: 13pt;
+}
+
+.GridSagolWhite>div:nth-child(1)>div {
+    text-align: center;
+}
+
+.button {
+    background-color: #4CAF50;
+}
+
+.buttondel:hover {
+    background-color: blue;
+    color: white;
+}
+
+.buttondel {
+    background-color: red;
+    /* Green */
+}
+
+.button:hover {
+    background-color: blue;
+    color: white;
+}
+
+.buttonBase {
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13pt;
+    border-radius: 3px;
+    padding: 5px;
+    width: 70px;
+    cursor: pointer;
+}

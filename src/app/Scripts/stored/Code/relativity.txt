@@ -1,0 +1,13 @@
+taharij ptija opendate 1
+T atjala metujnana  opendes 2
+T sium metujnana  enddes 3
+T atjala bafohal opandate 1
+T sium bafohal enddate 4
+T ishur aproval 5
+
+https://localhost:44306/MAPI/Files/Test/mListDirectoryWorkers.json
+
+    const mCurrentID = parseInt(eval('route.queryParams._value.projectid'));
+    if (!isNaN(mCurrentID)) {
+      this.ChecksForUpdate(mhttp, mCurrentID, FromCheckSettingUCEvent)
+    }

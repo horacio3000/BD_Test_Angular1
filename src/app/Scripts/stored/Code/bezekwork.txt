@@ -1,0 +1,92 @@
+
+
+<div [hidden]="this.semsorBox?.DeviceId == undefined">
+    <div style="position:relative" class='card-header'>
+
+.noBorders {
+    border: none;
+    box-shadow: none;
+    height: 0px;
+    overflow-y: hidden;
+}
+
+
+
+
+
+
+
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
+import { Component, OnInit } from '@angular/core';
+import { Rootobject, m_components } from 'src/app/models/sensorsmodels';
+
+@Component({
+  selector: 'app-default',
+  templateUrl: './default.component.html',
+  styleUrls: ['./default.component.css']
+})
+export class DefaultComponent implements OnInit {
+
+  panelOpenState = false;
+  AllSensors: m_components[] = [];
+  newSensor: m_components = new m_components();
+
+  constructor(private _http: HttpClient) { }
+
+  ngOnInit(): void {
+    this.GetSensorsJson();
+  }
+
+  //Setting the lenth of the OK sensor numbers
+  GetOK(mVar: number) {
+    return this.AllSensors.filter(x => x.ComponentOk === mVar).length.toString();
+  }
+
+
+  AddNewSensor() {
+    //Quit the fill row UI blank objects
+    this.AllSensors = this.AllSensors.filter(x => x.DeviceId != undefined);
+
+    //Add a temporary picture
+    this.newSensor.Picture = "clock"
+    //Add a temporary id
+    this.newSensor.DeviceId = 90;
+
+    //Add a temporary status
+    this.newSensor.ComponentOk = 1;
+
+    //Add the new sensor row to a array
+    this.AllSensors.push(this.newSensor);
+
+    //reset the new row
+    this.newSensor = new m_components();
+
+    //Fill the the last row with empty element to fill 3 elements at row
+    this.fillTheLastRow();
+  }
+
+  GetSensorsJson() {
+
+    //Getting the JSON from Assets folder
+    const JsonPath: string = location.href.toString() + 'assets/Json/sensors.json';
+    //Getting the Json Content as Model Class
+    this._http.get<Rootobject>(JsonPath)
+      .subscribe((res) => {
+        this.AllSensors = res.components;
+        this.fillTheLastRow();
+      });
+
+
+
+  }
+
+  //Fill the the last row with empty element to fill 3 elements at row
+  fillTheLastRow() {
+    for (let i = 0; i < this.AllSensors.length % 3; i++) {
+      var newcom = new m_components();
+      newcom.DeviceId = undefined;
+      this.AllSensors.push(newcom);
+    }
+  }
+}
