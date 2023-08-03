@@ -1,0 +1,41 @@
+<div style="display: none;">
+  <button [id]="'mButtonModal*****'" data-toggle="modal" data-target="#myModal01*****">
+  </button></div>
+<div class="container">
+  <div class="modal fade" id="myModal01*****" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content" style="direction: rtl">
+        <div class="modal-header" style="text-align: right">
+          <div [id]="'TitleModal*****'" class="mTitleCss">
+            <div class="mTableMiddle" style="width: 100%">
+              <div>
+                <div style="width: 40px;"> <img style="display: inline-block;width:30px"
+                    src="../../../assets/img/glyphicons_free/glyphicons/png/question1.png"></div>
+                <div style="width: auto"> <span class="mTitleCss">שאלה</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div [id]="'MsgModal*****'"
+            class="outlab3" style="text-align: center; line-height: 40px;font-weight: bold; font-size: 14pt;padding-top: 20px;padding-bottom: 20px;">
+            האם אתה בטוח למחוק השכבה:
+            <div style="font-weight: bold; display: inline-block;font-family: arial">
+              {{clssitesettings.currentDescription}}?</div>
+          </div>
+        </div>
+        <div class="modal-footer" style="padding: unset">
+          <button type="button" class="btn btn-default" style="text-decoration: underline"
+            data-dismiss="modal">
+            <div (click)="DeleteStep2()" class="mTitleCss">מחק</div>
+          </button>
+          <button type="button" class="btn btn-default" style="text-decoration: underline"
+            data-dismiss="modal">
+            <div class="outlab3">בטול</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

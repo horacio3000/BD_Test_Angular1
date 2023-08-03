@@ -1,0 +1,12 @@
+    var params = new HttpParams().set('mNewWorker', JSON.stringify(this.userListKablan));
+    const mQueryString: string = this.mconfig.mUrl + '/mDataBase/InsertNewWorker';
+
+    mhttp.get<number>(mQueryString, { params })
+      .subscribe((res) => {
+
+       // to avoid tslint message
+        params = null;
+      });
+
+
+      ----------------------------------------------

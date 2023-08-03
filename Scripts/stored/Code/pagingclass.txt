@@ -1,0 +1,163 @@
+    //Cambiar aqui el nombre de la clase
+PagingRelateds = new class {
+    //cambiar el tipo por el de la lista
+  init(tableOriginalList: clstableOriginalList[]) {
+    this.tableOriginalList = tableOriginalList.sort(function (a, b) { return b.relid - a.relid })
+    this.Searchflags();
+  }
+
+  tableOriginalList: clstableOriginalList[] = [];
+  pagingflagLabel = '';
+  //Ponerle este a la tabla
+  mTempoflagsFiltered: clstableOriginalList[] = [];
+  flagFlagMax: boolean | null | undefined;
+  curentflagPaging = 1;
+  flag: clstableOriginalList[] = [];
+  searchflagString = '';
+  pagingCountingBy = 8;
+
+
+  ////PAGING/////////////////////////
+
+  //function on init()
+  Searchflags(): void {
+    this.curentflagPaging = 1;
+    this.SearchflagInternal();
+    this.FilterflagsByPaging();
+  }
+
+
+  SearchflagInternal(): void {
+    if (this.searchflagString.trim().toLowerCase() === '') {
+      this.mTempoflagsFiltered = this.tableOriginalList;
+      return;
+    }
+
+    this.mTempoflagsFiltered = this.tableOriginalList.filter(x => x.strTitle.toLowerCase().
+      indexOf(this.searchflagString.toLowerCase()) !== -1);
+  }
+
+
+  FilterflagsByPaging(): void {
+    // tslint:disable-next-line: array-type
+    const min: number = (this.curentflagPaging * this.pagingCountingBy) - this.pagingCountingBy;
+    const max: number = (this.curentflagPaging * this.pagingCountingBy);
+
+    let iMax = 0;
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.mTempoflagsFiltered.length; i++) {
+      if (i >= min && i < max) {
+        this.mTempoflagsFiltered[i].bActive = true;
+        iMax = i + 1;
+      }
+      else {
+        this.mTempoflagsFiltered[i].bActive = false;
+      }
+    }
+
+
+    if (this.mTempoflagsFiltered.length === iMax) {
+      this.flagFlagMax = true;
+    } else {
+      this.flagFlagMax = false;
+    }
+
+
+    this.pagingflagLabel = this.mTempoflagsFiltered.length + ' / ' + (min + 1).toString() + '-' + (iMax).toString();
+    this.mTempoflagsFiltered = this.mTempoflagsFiltered.filter(x => x.bActive === true);
+
+  }
+
+  FilterflagsByPagingUI(bSum: boolean | null): void {
+    this.SearchflagInternal();
+    this.SetCurrentPagingflags(bSum);
+    this.FilterflagsByPaging();
+  }
+
+  SetCurrentPagingflags(bSum: boolean | null): void {
+    if (bSum) {
+      this.curentflagPaging++;
+    }
+
+    if (bSum === false) {
+      this.curentflagPaging--;
+    }
+
+    if (this.curentflagPaging < 1) {
+      this.curentflagPaging = 1;
+    }
+
+    if ((this.curentflagPaging * this.pagingCountingBy) > this.mTempoflagsFiltered.length) {
+      this.curentflagPaging = Math.ceil(this.mTempoflagsFiltered.length / this.pagingCountingBy);
+    }
+  }
+
+}
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+          <!------------------QUETA PAGING------------->
+          <div style="width: 100%;padding: 0px;text-align: center;display: block;">
+              <div class="mTableMiddle" style="width: 100%;">
+                  <div>
+                      <div style="width: 220px;text-align: right;">
+                          <mat-form-field appearance="fill" style="width: 100%">
+                              <mat-label class="outcontitle">חפש בדיקות</mat-label>
+                              <input (keyup)="***UIPROPNAMEthis***.PagingRelateds.Searchflags()" matInput [(ngModel)]="***UIPROPNAMEthis***.PagingRelateds.searchflagString">
+                          </mat-form-field>
+
+
+                      </div>
+
+                      <div style="width: 30px;"></div>
+
+                      <div style="cursor:pointer;width: 30px;" (click)="***UIPROPNAMEthis***.PagingRelateds.FilterflagsByPagingUI(true)">
+                          <div>
+                              <div [hidden]="***UIPROPNAMEthis***.PagingRelateds.flagFlagMax == true">
+                                  <div style="width: 30px;display:block;height:30px;right:30px;background-image: url('../../../assets/img/leftorange.png');background-repeat: no-repeat;">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+
+
+                      <div style="width: 90px;text-align: center;"><input (keyup)="***UIPROPNAMEthis***.PagingRelateds.FilterflagsByPagingUI(null)" type="number" [(ngModel)]="***UIPROPNAMEthis***.PagingRelateds.curentflagPaging" class="outcontitle" style="font-weight: bold;font-size: 13pt;text-align:center;width: 80px;height:28px;border:solid 1px #f0d6be">
+                      </div>
+
+                      <div style="cursor:pointer;width: 30px;" (click)="***UIPROPNAMEthis***.PagingRelateds.FilterflagsByPagingUI(false)">
+                          <div>
+                              <div [hidden]="***UIPROPNAMEthis***.PagingRelateds.curentflagPaging == 1">
+                                  <div style="width: 30px;display:block;height:30px;right:30px;background-image: url('../../../assets/img/rightorange.png');background-repeat: no-repeat;">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+
+
+                      <div style="width: 20px"></div>
+                      <div style="width: auto;text-align: right;">
+                          <span class="outlab1" style="font-weight: bold;font-size: 13pt">{{***UIPROPNAMEthis***.PagingRelateds.pagingflagLabel}}</span>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+
+          <!------------------QUETA PAGING------------->
